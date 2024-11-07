@@ -1,0 +1,32 @@
+# Use the official Golang image with Go 1.18 for building the application
+FROM golang:1.18-alpine
+
+# Install necessary dependencies
+RUN apk add --no-cache bash jq
+
+# Set the current working directory inside the container
+WORKDIR /app
+
+# Copy the Go module files
+COPY go.mod ./
+
+# Download dependencies
+RUN go mod download
+
+# Copy the source code
+COPY main.go .
+COPY template.html .
+COPY static ./static
+COPY run.sh .
+
+# Build the Go app
+RUN go build -o bin-waste-collection main.go
+
+# Make run.sh and bin-waste-collection executable
+RUN chmod +x run.sh bin-waste-collection
+
+# Copy the built binary
+COPY bin-waste-collection ./
+
+# Run the shell script
+CMD ["/app/run.sh"]

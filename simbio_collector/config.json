@@ -1,0 +1,19 @@
+{
+  "name": "Bin Collector Addon - Simbio",
+  "version" : "7.1",
+  "slug": "bin_collector_simbio",
+  "description": "A Go application to fetch waste collection data",
+  "arch": ["amd64", "armv7", "aarch64", "i386"],
+  "startup": "application",
+  "boot": "auto",
+  "host_network": true,
+  "hassio_api": true,
+  "homeassistant_api": true,
+  "hassio_role": "default",
+  "options": {
+    "address": "začret 69"
+  },
+  "schema": {
+    "address": "str"
+  } 
+}
