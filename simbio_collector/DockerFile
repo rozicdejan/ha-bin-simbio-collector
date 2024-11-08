@@ -1,15 +1,18 @@
 ARG BUILD_FROM=alpine:3.18
 FROM $BUILD_FROM
 
+# Install dependencies for the add-on
+RUN \
+  apk add --no-cache go bash
+
 # Set working directory
 WORKDIR /app
 
 # Add-on metadata
 LABEL "com.example.version"="1.0"
 
-# Install necessary dependencies
-RUN apk add --no-cache go bash
-
+# Make the script executable
+RUN chmod +x run.sh
 # Copy the application files
 COPY main.go .
 COPY go.mod .

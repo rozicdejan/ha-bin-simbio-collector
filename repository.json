@@ -1,5 +1,7 @@
 {
-    "name": "Home Assistant add-on for bin Collector for  Simbio - 2024",
+    "name": "Simbio Collector Add-ons",
     "url": "https://github.com/rozicdejan/ha-bin-simbio-collector",
-    "maintainer": "Dejan Rožič <rozic.dejan@gmail.com>"
-}
+    "maintainer": "Your Name",
+    "description": "A Home Assistant add-on for waste collection data using Simbio."
+  }
+  
