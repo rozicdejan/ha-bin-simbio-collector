@@ -1,6 +1,6 @@
 {
   "name": "Bin Collector for Simbio 2024",
-  "version": "1.20",
+  "version": "1.22",
   "slug": "bin_collector_for_simbio",
   "description": "A Go application to fetch waste collection data",
   "url": "https://github.com/rozicdejan/ha-bin-simbio-collector",
@@ -17,5 +17,8 @@
   },
   "schema": {
     "address": "str"
+  },
+  "ports": {
+    "8081/tcp": 8081
   }
 }
