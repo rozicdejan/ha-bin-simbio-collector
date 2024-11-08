@@ -1,8 +1,9 @@
 {
   "name": "Bin Collector for Simbio 2024",
-  "version": "1.15",
+  "version": "1.16",
   "slug": "bin_collector_for_simbio",
   "description": "A Go application to fetch waste collection data",
+  "url": "https://github.com/rozicdejan/ha-bin-simbio-collector",
   "arch": ["amd64", "armv7", "aarch64", "i386", "armhf"],
   "startup": "application",
   "boot": "auto",
@@ -17,5 +18,6 @@
   "schema": {
     "address": "str"
   },
-  "image": "bin_collector_for_simbio_{arch}"
+  "image": false,
+  "build": true
 }
