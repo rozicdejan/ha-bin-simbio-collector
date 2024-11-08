@@ -1,6 +1,6 @@
 {
   "name": "Bin Collector for Simbio 2024",
-  "version": "1.13",
+  "version": "1.14",
   "slug": "bin_collector_for_simbio",
   "description": "A Go application to fetch waste collection data",
   "arch": ["amd64", "armv7", "aarch64", "i386", "armhf"],
