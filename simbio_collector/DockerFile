@@ -1,8 +1,23 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=alpine:3.18
 FROM $BUILD_FROM
 
-# Copy data for add-on
-COPY run.sh /
-RUN chmod a+x /run.sh
+# Add-on metadata
+LABEL "com.example.version"="1.0"
 
-CMD [ "/run.sh" ]
+# Install necessary dependencies
+RUN apk add --no-cache go bash
+
+# Copy the application files
+COPY main.go /app/
+COPY go.mod /app/
+COPY template.html /app/
+COPY static/ /app/static/
+COPY run.sh /app/
+
+WORKDIR /app
+
+# Build the Go application
+RUN go build -o main main.go
+
+# Execute the script
+CMD ["/bin/bash", "/app/run.sh"]

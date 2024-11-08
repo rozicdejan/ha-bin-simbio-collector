@@ -1,6 +1,6 @@
 {
   "name": "Simbio Collector",
-  "version": "1.0",
+  "version": "1.1",
   "slug": "simbio_collector",
   "description": "Collects and displays waste collection data from Simbio.",
   "arch": ["amd64", "armv7", "aarch64"],
