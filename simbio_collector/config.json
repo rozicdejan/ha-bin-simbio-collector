@@ -1,24 +1,16 @@
 {
-  "name": "Bin Collector for Simbio 2024",
-  "version" : "1.30",
-  "slug": "bin_collector_for_simbio",
-  "description": "A Go application to fetch waste collection data",
-  "arch": ["amd64", "armv7", "aarch64", "i386", "armhf"],
+  "name": "Simbio Collector",
+  "version": "1.0",
+  "slug": "simbio_collector",
+  "description": "Collects and displays waste collection data from Simbio.",
+  "arch": ["amd64", "armv7", "aarch64"],
   "startup": "application",
   "boot": "auto",
-  "init": true,
-  "host_network": true,
-  "hassio_api": true,
-  "homeassistant_api": true,
-  "hassio_role": "default",
-  "options": {
-    "address": "začret 69"
-  },
-  "schema": {
-    "address": "str"
-  },
   "ports": {
     "8081/tcp": 8081
-  }
-  
+  },
+  "webui": "http://[HOST]:[PORT:8081]",
+  "ingress": false,
+  "options": {},
+  "schema": {}
 }
