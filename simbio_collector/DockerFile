@@ -1,6 +1,9 @@
 ARG BUILD_FROM=alpine:3.18
 FROM $BUILD_FROM
 
+# Set working directory
+WORKDIR /app
+
 # Add-on metadata
 LABEL "com.example.version"="1.0"
 
@@ -8,13 +11,14 @@ LABEL "com.example.version"="1.0"
 RUN apk add --no-cache go bash
 
 # Copy the application files
-COPY main.go /app/
-COPY go.mod /app/
-COPY template.html /app/
-COPY static/ /app/static/
-COPY run.sh /app/
+COPY main.go .
+COPY go.mod .
+COPY template.html .
+COPY static/ ./static/
+COPY run.sh .
 
-WORKDIR /app
+# Make the script executable
+RUN chmod +x run.sh
 
 # Build the Go application
 RUN go build -o main main.go
