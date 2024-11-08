@@ -2,32 +2,27 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install necessary dependencies
-#RUN apk add --no-cache bash jq
+# Install necessary packages
+RUN apk add --no-cache bash jq go
 
 # Set the current working directory inside the container
 WORKDIR /app
 
 # Copy the Go module files
 COPY go.mod ./
+COPY go.sum ./
 
 # Download dependencies
 RUN go mod download
 
-# Copy the source code
-COPY main.go .
-COPY template.html .
-COPY static ./static
-COPY run.sh .
+# Copy the source code and assets
+COPY . .
 
 # Build the Go app
-RUN go build -o bin-waste-collection main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o bin-waste-collection main.go
 
-# Make run.sh and bin-waste-collection executable
-RUN chmod +x run.sh bin-waste-collection
+# Make run.sh executable
+RUN chmod a+x run.sh
 
-# Copy the built binary
-COPY bin-waste-collection ./
-
-# Run the shell script
+# Command to run
 CMD ["/app/run.sh"]
