@@ -1,28 +1,8 @@
-# Use the official Golang image with Go 1.18 for building the application
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install necessary packages
-RUN apk add --no-cache bash jq go
+# Copy data for add-on
+COPY run.sh /
+RUN chmod a+x /run.sh
 
-# Set the current working directory inside the container
-WORKDIR /app
-
-# Copy the Go module files
-COPY go.mod ./
-COPY go.sum ./
-
-# Download dependencies
-RUN go mod download
-
-# Copy the source code and assets
-COPY . .
-
-# Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -o bin-waste-collection main.go
-
-# Make run.sh executable
-RUN chmod a+x run.sh
-
-# Command to run
-CMD ["/app/run.sh"]
+CMD [ "/run.sh" ]
