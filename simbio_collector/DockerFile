@@ -8,11 +8,6 @@ RUN \
 # Set working directory
 WORKDIR /app
 
-# Add-on metadata
-LABEL "com.example.version"="1.0"
-
-# Make the script executable
-RUN chmod +x run.sh
 # Copy the application files
 COPY main.go .
 COPY go.mod .
@@ -24,7 +19,13 @@ COPY run.sh .
 RUN chmod +x run.sh
 
 # Build the Go application
-RUN go build -o main main.go
+RUN go build -o main main.go || { echo "[ERROR] Go build failed." >&2; exit 1; }
+
+# Add error logging to run.sh
+RUN echo '#!/bin/bash\n\n# Run the application with error logging\n/app/main 2> /app/error.log || { echo "[ERROR] Application failed to start. Check error.log for details." >&2; exit 1; }' > run.sh
+
+# Make the script executable
+RUN chmod +x run.sh
 
 # Execute the script
-CMD ["/bin/bash", "/app/run.sh"]
+CMD ["/app/run.sh"]
